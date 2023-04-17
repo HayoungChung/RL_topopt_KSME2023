@@ -1,0 +1,10 @@
+-- config.json: opts.py 파일 162번째 줄 위치 --
+Table.1
+(a): {"bcs": [1, 553], "rights": [], "lefts": [], "downs": [576], "ups": [], "volfraction": 0.1}
+(b): {"bcs": [1, 553], "rights": [312], "lefts": [], "downs": [], "ups": [], "volfraction": 0.3}
+(c): {"bcs": [1, 553], "rights": [], "lefts": [], "downs": [288], "ups": [], "volfraction": 0.33}
+(d): {"bcs": [1, 553], "rights": [288, 312], "lefts": [265, 289], "downs": [], "ups": [], "volfraction": 0.38}
+(e): {"bcs": [553, 576], "rights": [], "lefts": [1], "downs": [], "ups": [], "volfraction": 0.1}
+(f): {"bcs": [553, 576], "rights": [], "lefts": [], "downs": [554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575], "ups": [], "volfraction": 0.3}
+Fig.13 (a): {"bcs": [2, 21, 289], "rights": [333, 528], "lefts": [], "downs": [469, 573], "ups": [402], "volfraction": 0.50}
+Fig.13 (b): {"bcs": [481, 557, 569], "rights": [417], "lefts": [], "downs": [491], "ups": [317], "volfraction": 0.35}
