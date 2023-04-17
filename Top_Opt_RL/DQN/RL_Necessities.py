@@ -5,7 +5,7 @@ Created on Thu Aug 12 17:06:46 2021
 @author: nbrow
 """
 import numpy as np
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers.legacy import Adam # (if keras version 2.3.1)
 from tensorflow.math import argmax
 import tensorflow.keras as keras 
 from tensorflow.keras import layers,models 

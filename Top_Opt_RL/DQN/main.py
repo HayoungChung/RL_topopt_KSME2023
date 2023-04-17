@@ -7,15 +7,16 @@ Created on Fri Apr  2 09:34:14 2021
 
 ''' Nathan Brown 
 Main Function for the Reinforcement Learning Based Topology Optimization Solver using Double Q-Learning'''
-import os 
+import os, sys
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 import numpy as np
 import time
 import json
 import math
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 # import FEA_SOLVER_GENERAL
 from Top_Opt_RL.DQN.FEA_SOLVER_GENERAL import *
-#from FEA_SOLVER_GENERAL import *
+# from FEA_SOLVER_GENERAL import *
 # from Top_Opt_RL.DQN.FEA_SOLVER_GENERAL import FEA_SOLVER_GENERAL
 
 from Top_Opt_RL.DQN.opts import parse_opts
@@ -32,7 +33,7 @@ def plot_learning_curve(x, scores, figure_file):
     plt.xlabel('Episodes')
     plt.ylabel(' Average Reward')
     plt.savefig(figure_file)
-def Data_History(score_history,per_history,succ_history,Loss_history,Total_Loss,score,Main_EX,Main_EY,i):
+def Data_History(score_history, per_history, succ_history, Loss_history, Total_Loss, score, Main_EX, Main_EY,i):
 
     Loss_history.append(Total_Loss)
     avg_Loss=np.mean(Loss_history[-50:])
@@ -46,8 +47,7 @@ def Data_History(score_history,per_history,succ_history,Loss_history,Total_Loss,
     per_history.append(Percent_Succ)
     avg_percent=np.mean(per_history[-50:])
     return score_history,per_history,succ_history,Loss_history,Succ_Steps,Percent_Succ,avg_succ,avg_score,avg_Loss,avg_percent
-
-def TopOpt_Designing(User_Conditions,opts, envs,my_call_back_functions):
+def TopOpt_Designing(User_Conditions, opts, envs): #,my_call_back_functions):
     Time_Trial = opts.Time_Trial
     if opts.Progressive_Refinement:
         agent_primer= Agent(envs.env_primer,opts,Increase=False,filename_save=opts.filename_save+str(opts.PR_EX)+'by'+str(opts.PR_EY),
@@ -129,7 +129,7 @@ def TopOpt_Designing(User_Conditions,opts, envs,my_call_back_functions):
                 agent.store_transition(observation_vh,action_vh,reward,observation_vh_,done)
             score += reward
             App_Plot=Testing_Info(envs.env,envs.env_primer,envs.env_primer2,opts,score,opts.Progressive_Refinement,opts.From_App,Fixed=True)
-            _=[fn(App_Plot) for fn in my_call_back_functions]
+            # _=[fn(App_Plot) for fn in my_call_back_functions]
             Last_Reward=reward
             if Testing and not Time_Trial:
                 envs.env.render()
@@ -141,7 +141,7 @@ def TopOpt_Designing(User_Conditions,opts, envs,my_call_back_functions):
                 observation_vh=observation_vh_
             if opts.Load_Checkpoints and not Time_Trial:   envs.env.render()
         App_Plot=Testing_Info(envs.env,envs.env_primer,envs.env_primer2,opts,score,opts.Progressive_Refinement,opts.From_App,Fixed=True)
-        _=[fn(App_Plot) for fn in my_call_back_functions]
+        # _=[fn(App_Plot) for fn in my_call_back_functions]
         return App_Plot        
         toc=time.perf_counter()
 
@@ -149,9 +149,6 @@ def TopOpt_Designing(User_Conditions,opts, envs,my_call_back_functions):
             print('It took '+str(round(toc-Start_Time_Trial,1))+' seconds to complete this time trial.')    
 
         App_Plot=Testing_Info(envs.env,envs.env_primer,envs.env_primer2,opts,score,opts.Progressive_Refinement,opts.From_App,Fixed=True)
-            
-  
-     
 class EnviromentsRL:
     def __init__(self, opts):
         if opts.Load_Checkpoints:
@@ -176,3 +173,5 @@ if __name__=='__main__':
     envs = EnviromentsRL(opts)  
     App_Plot=TopOpt_Designing(User_Conditions,opts, envs)
     json.dump( App_Plot, open( "App_Data.json", 'w' ) )
+    import read_app_data
+    read_app_data

@@ -1,0 +1,8 @@
+numpy==1.19.5
+keract==4.5.0
+matplotlib==3.3.2
+pandas==1.0.1
+gym==0.18.0
+scipy==1.4.1
+tensorflow==2.5.0
+# scikit-image==0.17.2
