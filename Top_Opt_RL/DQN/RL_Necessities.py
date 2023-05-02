@@ -10,6 +10,9 @@ from tensorflow.math import argmax
 import tensorflow.keras as keras 
 from tensorflow.keras import layers,models 
 import os
+
+os.environ["cuda_visible_devices"]="1"
+
 class Agent():
     def __init__(self,env,opts,Increase,n_actions,input_dims,epsilon,
                  filename_save,filename_load,EX,EY):
@@ -84,7 +87,7 @@ class Agent():
                 #q_next[idx] = 0.0
             q_target[idx, actions[idx]] = rewards[idx] + \
                     self.gamma*q_next[idx, max_actions[idx]]*(1-int(dones[idx]))
-        
+        self.q_target = q_target
         Loss=np.subtract(q_target,q_pred.numpy())
         Loss=np.square(Loss)
         Loss=Loss.mean()

@@ -176,6 +176,7 @@ class TopOpt_Gen(Env):
             self.BC_state=np.reshape(self.BC_state,(self.EX,self.EY))
             self.Results=FEASolve(self.VoidCheck,self.Lx,self.Ly,self.EX,self.EY,self.LC_Nodes,self.Load_Directions,self.BC_Nodes,Stress=True)
             self.Max_SE_Tot=self.Results[1]
+            
     def primer_cond(self,EX,EY):
          self.BC=[]
          self.BC=np.append(self.BC,self.BC_Elements)
